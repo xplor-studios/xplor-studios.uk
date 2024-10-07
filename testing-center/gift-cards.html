@@ -22,7 +22,7 @@
             validateCode(code);
         });
 
-        function validateCode(code) {
+        function validateCode('awesd') {
             const encodedCode = encodeURIComponent(code);
             const url = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula={Code}='${encodedCode}'`;
 
