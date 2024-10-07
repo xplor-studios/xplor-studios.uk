@@ -23,7 +23,7 @@
         });
 
         function validateCode(code) {
-            const url = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=Code=${code}'`;
+            const url = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula={Code}='${encodedCode}'`;
 
             fetch(url, {
                 headers: {
