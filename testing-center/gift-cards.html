@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Card Code Entry</title>
+</head>
+<body>
+    <h1>Enter Your Gift Card Code</h1>
+    <input type="text" id="codeInput" placeholder="Enter code here">
+    <button id="submitButton">Submit</button>
+    <div id="responseMessage"></div>
+
+    <script>
+        const apiKey = 'patqeXDKOdVoFB3dm.b0b731a01dd1ae6b7d53fa1cc40c9b8567d989cd444552f239f57155cb8bfa12'; // replace with your personal access token
+        const baseId = 'appnvby1MDhUTql6a'; // replace with your base ID
+        const tableName = 'Gift Card Codes'; // replace with your table name
+
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const code = document.getElementById('codeInput').value;
+            validateCode(code);
+        });
+
+        function validateCode(code) {
+            const url = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula={Code}='${code}'`; // replace 'Code' with the actual field name in your table
+
+            fetch(url, {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.records.length > 0) {
+                    document.getElementById('responseMessage').innerText = `Code "${code}" is valid!`;
+                } else {
+                    document.getElementById('responseMessage').innerText = `Code "${code}" is invalid.`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').innerText = 'There was an error validating your code.';
+            });
+        }
+    </script>
+</body>
+</html>
