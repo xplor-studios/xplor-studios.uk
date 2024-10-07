@@ -14,7 +14,7 @@
 
     <script>
         const apiKey = 'patqeXDKOdVoFB3dm.b0b731a01dd1ae6b7d53fa1cc40c9b8567d989cd444552f239f57155cb8bfa12'; // replace with your personal access token
-        const baseId = 'nvby1MDhUTql6a'; // replace with your base ID
+        const baseId = 'appnvby1MDhUTql6a'; // replace with your base ID
         const tableName = 'Gift Card Codes'; // replace with your table name
 
         document.getElementById('submitButton').addEventListener('click', function() {
@@ -23,7 +23,7 @@
         });
 
         function validateCode(code) {
-            const url = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula={Code}='${code}'`; // replace 'Code' with the actual field name in your table
+            const url = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=Code=${code}'`;
 
             fetch(url, {
                 headers: {
