@@ -9,7 +9,7 @@
 <body>
     <h1>Enter Your Gift Card Code</h1>
     <input type="text" id="codeInput" placeholder="Discount code">
-    <button id="submitButton" border-radius="500px">Submit</button>
+    <button id="submitButton" border-radius="500px">Enter</button>
     <div id="responseMessage"></div>
 
     <script>
@@ -40,7 +40,7 @@
                 if (data.records.length > 0) {
                     document.getElementById('responseMessage').innerText = `Code "${code}" is valid!`;
                 } else {
-                    document.getElementById('responseMessage').innerText = `Code "${code}" is invalid.`;
+                    document.getElementById('responseMessage').innerText = `Code "${code}" is invalid!`;
                 }
             })
             .catch(error => {
